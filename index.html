@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#f0f4f8">
+  <title>Premios de Anton</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Lilita+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Emoji Background Pattern -->
+  <div class="bg-pattern" id="bg-pattern"></div>
+  <div class="bg-gradient"></div>
+
+  <!-- Global Header -->
+  <div class="header">
+    <h1 class="title">
+      <span class="title-line1" id="title-line1">Premios de</span>
+      <span class="title-line2">Anton</span>
+    </h1>
+    <!-- Section Tabs -->
+    <div class="section-tabs">
+      <button class="section-tab active" data-section="premios">🏆 Premios</button>
+      <button class="section-tab" data-section="horario">📅 Horario</button>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION: Premios ═══ -->
+  <div class="section active" id="section-premios">
+    <div class="progress-text" id="progress-text"></div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+    <div class="pages">
+      <div class="page active" id="page-checklist">
+        <div class="checklist-grid" id="checklist-grid"></div>
+      </div>
+      <div class="page" id="page-history">
+        <div class="history-list" id="history-list"></div>
+      </div>
+      <div class="page" id="page-settings">
+        <div class="settings-section">
+          <h3>Meta por tanda</h3>
+          <div class="setting-row">
+            <label>Obligaciones para ganar premio</label>
+            <div class="meta-control">
+              <button class="meta-btn" id="meta-minus">−</button>
+              <div class="meta-value" id="meta-value">10</div>
+              <button class="meta-btn" id="meta-plus">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h3>Tanda actual</h3>
+          <button class="danger-btn" id="reset-btn">Reiniciar tanda actual</button>
+        </div>
+        <div class="settings-section">
+          <h3>Datos</h3>
+          <button class="danger-btn" id="clear-history-btn">Borrar historial de premios</button>
+        </div>
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-page="page-checklist">
+        <span class="nav-icon">✅</span>
+        Tanda
+      </button>
+      <button class="nav-btn" data-page="page-history">
+        <span class="nav-icon">🏆</span>
+        Premios
+      </button>
+      <button class="nav-btn" data-page="page-settings">
+        <span class="nav-icon">⚙️</span>
+        Ajustes
+      </button>
+    </nav>
+  </div>
+
+  <!-- ═══ SECTION: Horario ═══ -->
+  <div class="section" id="section-horario">
+    <div class="pages">
+      <div class="page active" id="page-schedule-view">
+        <div class="schedule-wrap" id="schedule-wrap"></div>
+      </div>
+      <div class="page" id="page-schedule-edit">
+        <div class="settings-section">
+          <h3>Editar materias</h3>
+          <div id="schedule-editor"></div>
+        </div>
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-page="page-schedule-view">
+        <span class="nav-icon">📅</span>
+        Semana
+      </button>
+      <button class="nav-btn" data-page="page-schedule-edit">
+        <span class="nav-icon">✏️</span>
+        Editar
+      </button>
+    </nav>
+  </div>
+
+  <!-- Note Modal -->
+  <div class="modal-overlay" id="note-modal">
+    <div class="modal">
+      <h2>Obligacion completada</h2>
+      <p class="modal-sub">Que hiciste?</p>
+      <div class="quick-picks" id="quick-picks"></div>
+      <input type="text" id="note-input" placeholder="O escribe otra cosa..." autocomplete="off">
+      <div class="modal-actions">
+        <button class="btn-cancel" id="note-cancel">Cancelar</button>
+        <button class="btn-cancel" id="note-skip">Saltar</button>
+        <button class="btn-primary" id="note-save">Listo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prize Modal -->
+  <div class="modal-overlay" id="prize-modal">
+    <div class="modal">
+      <h2>🎉 Bravo Anton!</h2>
+      <p class="modal-sub">Completaste toda la tanda! Cual es tu premio?</p>
+      <input type="text" id="prize-input" placeholder="Escribe tu premio..." autocomplete="off">
+      <div class="modal-actions">
+        <button class="btn-gold" id="prize-save">Reclamar Premio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subject Modal -->
+  <div class="modal-overlay" id="subject-modal">
+    <div class="modal">
+      <h2>Materia</h2>
+      <p class="modal-sub" id="subject-modal-day"></p>
+      <input type="text" id="subject-input" placeholder="Ej: Matematicas (vacio para borrar)" autocomplete="off">
+      <div class="modal-actions">
+        <button class="btn-cancel" id="subject-cancel">Cancelar</button>
+        <button class="btn-primary" id="subject-save">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti -->
+  <canvas id="confetti"></canvas>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
