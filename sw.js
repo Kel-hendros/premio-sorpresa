@@ -1,10 +1,10 @@
-const CACHE_NAME = 'premio-sorpresa-v1';
+const CACHE_NAME = 'premio-sorpresa-v2';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/app.js',
-  '/manifest.json'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/app.js',
+  './manifest.json'
 ];
 
 self.addEventListener('install', (e) => {

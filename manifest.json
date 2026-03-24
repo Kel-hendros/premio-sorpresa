@@ -2,7 +2,7 @@
   "name": "Premios de Anton",
   "short_name": "Anton",
   "description": "Anton completa sus obligaciones y gana premios",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f0f4f8",
   "theme_color": "#f0f4f8",
